@@ -1,0 +1,70 @@
+{
+  "clinic": {
+    "name": "Nishant Dental Studio",
+    "shortName": "Nishant Dental",
+    "tagline": "Precision Dentistry, Designed Around You",
+    "establishedYear": 2009,
+    "logoText": "Nishant Dental",
+    "logoIcon": "tooth",
+    "logoImage": "",
+    "faviconImage": ""
+  },
+  "doctor": {
+    "name": "Dr. Aanya Kapoor",
+    "credentials": "BDS, MDS — Prosthodontics & Implantology",
+    "experienceYears": 18,
+    "photo": ""
+  },
+  "contact": {
+    "phonePrimary": "+91 98100 00000",
+    "phoneDisplay": "+91 98100 00000",
+    "whatsappNumber": "919810000000",
+    "email": "hello@lumieredental.example",
+    "mapEmbedUrl": ""
+  },
+  "locations": [
+    {
+      "label": "Greater Kailash",
+      "address": "12, Block N, Greater Kailash I, New Delhi 110048",
+      "mapUrl": "https://maps.google.com/?q=Greater+Kailash+I+New+Delhi"
+    },
+    {
+      "label": "Golf Course Road",
+      "address": "3rd Floor, Suncity Success Tower, Golf Course Road, Gurugram 122002",
+      "mapUrl": "https://maps.google.com/?q=Golf+Course+Road+Gurugram"
+    },
+    {
+      "label": "Vasant Kunj",
+      "address": "A-14, Pocket 3, Vasant Kunj, New Delhi 110070",
+      "mapUrl": "https://maps.google.com/?q=Vasant+Kunj+New+Delhi"
+    }
+  ],
+  "hours": {
+    "weekdays": "9:00 AM – 8:00 PM",
+    "saturday": "9:00 AM – 6:00 PM",
+    "sunday": "By appointment only"
+  },
+  "social": {
+    "instagram": "https://instagram.com/",
+    "facebook": "https://facebook.com/",
+    "youtube": "https://youtube.com/",
+    "google": "https://google.com/"
+  },
+  "stats": {
+    "countriesServed": "25+",
+    "patientsTreated": "40,000+",
+    "googleRating": "4.9",
+    "yearsOfTrust": "16+"
+  },
+  "theme": {
+    "colorInk": "#0E3B36",
+    "colorInkDark": "#082420",
+    "colorAqua": "#46C9B4",
+    "colorGold": "#C8A05B",
+    "colorPorcelain": "#F7FAF9"
+  },
+  "footer": {
+    "copyrightText": "All rights reserved.",
+    "registrationNote": "Registered dental establishment. All treatments performed by licensed dental practitioners."
+  }
+}
