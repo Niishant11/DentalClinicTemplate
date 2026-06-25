@@ -27,7 +27,7 @@ $activeNav       = $activeNav ?? '';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($pageTitle) ?></title>
 <meta name="description" content="<?= htmlspecialchars($pageDescription) ?>">
-<link rel="icon" href="<?= getConfig('clinic.faviconImage') ?: asset('Website/Images/favicon.svg') ?>">
+<link rel="icon" href="<?= getConfig('clinic.faviconImage') ?: asset('Website/Images/Clean tooth.svg') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -77,15 +77,23 @@ $activeNav       = $activeNav ?? '';
   color: var(--ink);
   letter-spacing: 0.01em;
 }
-.brand-mark {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(140deg, var(--aqua) 0%, var(--ink) 100%);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 6px 16px rgba(70,201,180,0.35);
+.brand-mark{
+    width:50px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    flex-shrink:0;
+    border-radius:50%;
 }
-.brand-mark svg { width: 20px; height: 20px; }
+
+.brand-logo{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,.15));
+}
 .brand small {
   display: block;
   font-family: var(--font-mono);
@@ -118,11 +126,80 @@ $activeNav       = $activeNav ?? '';
 }
 .nav-links a:hover::after, .nav-links a.is-active::after { width: 100%; }
 .nav-links a.is-active { color: var(--ink); }
+/* Dropdown Menu */
+
+.nav-dropdown{
+    position:relative;
+}
+
+.nav-dropdown-btn{
+    background:none;
+    border:none;
+    font:inherit;
+    color:var(--text-dark);
+    cursor:pointer;
+    font-size:0.92rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:0;
+}
+
+.arrow{
+    font-size:10px;
+    transition:transform .3s ease;
+}
+
+.nav-dropdown:hover .arrow{
+    transform:rotate(180deg);
+}
+
+.nav-dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%);
+    min-width:180px;
+    background:#fff;
+    border-radius:14px;
+    padding:10px 0;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+    opacity:0;
+    visibility:hidden;
+    transition:.25s ease;
+    z-index:9999;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    top:130%;
+}
+
+.nav-dropdown-menu a{
+    display:block;
+    padding:12px 18px;
+    color:var(--ink);
+    text-decoration:none;
+}
+
+.nav-dropdown-menu a:hover{
+    background:rgba(0,0,0,.05);
+}
 
 .header-cta { display: flex; align-items: center; gap: 0.65rem; }
 .header-cta .btn { padding: 0.7rem 1.25rem; font-size: 0.86rem; }
 .icon-call { display: inline-flex; }
-.icon-call svg { width: 16px; height: 16px; }
+.icon-call svg { width: 20px; height: 20px; }
+
+.call-icon{
+    color:#25D366;
+    filter:
+        drop-shadow(0 0 4px rgba(37,211,102,.8))
+        drop-shadow(0 0 8px rgba(37,211,102,.6))
+        drop-shadow(0 0 12px rgba(37,211,102,.4));
+}
 
 .nav-toggle {
   display: none;
@@ -134,7 +211,7 @@ $activeNav       = $activeNav ?? '';
 }
 .nav-toggle span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 
-@media (max-width: 980px) {
+@media (max-width: 800px) {
   .nav-links { display: none; }
   .header-cta .btn-ghost { display: none; }
   .nav-toggle { display: flex; }
@@ -184,14 +261,13 @@ body.nav-locked { overflow: hidden; }
     <div class="header-shell">
       <a href="<?= homeUrl() ?>" class="brand">
         <span class="brand-mark">
-          <?php if (getConfig('clinic.logoImage')): ?>
-            <img src="<?= asset(getConfig('clinic.logoImage')) ?>" alt="<?= htmlspecialchars(getConfig('clinic.name')) ?> logo" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;">
-          <?php else: ?>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C8.5 2 6 4.2 6 7.8c0 2.3 0.8 3.6 1.4 5.4.5 1.6.7 3.9 1.4 5.9.5 1.4 1.2 2.4 2 2.4.9 0 1.3-1 1.7-2.6.3-1.2.4-2.6 1-2.6s.7 1.4 1 2.6c.4 1.6.8 2.6 1.7 2.6.8 0 1.5-1 2-2.4.7-2 .9-4.3 1.4-5.9.6-1.8 1.4-3.1 1.4-5.4C18 4.2 15.5 2 12 2Z" stroke="white" stroke-width="1.4"/>
-            </svg>
-          <?php endif; ?>
-        </span>
+    <?php if (getConfig('clinic.logoImage')): ?>
+        <img
+            src="<?= asset(getConfig('clinic.logoImage')) ?>"
+            alt="<?= htmlspecialchars(getConfig('clinic.name')) ?> Logo"
+            class="brand-logo">
+    <?php endif; ?>
+</span>
         <span>
           <?= htmlspecialchars(getConfig('clinic.logoText', getConfig('clinic.name'))) ?>
           <small><?= htmlspecialchars(getConfig('clinic.tagline')) ?></small>
@@ -199,19 +275,49 @@ body.nav-locked { overflow: hidden; }
       </a>
 
       <nav class="nav-links" data-nav-menu>
-        <a href="<?= homeUrl() ?>#services" class="<?= $activeNav === 'home' ? 'is-active' : '' ?>">Treatments</a>
-        <a href="<?= pageUrl('about-us.php') ?>" class="<?= $activeNav === 'about' ? 'is-active' : '' ?>">About</a>
-        <a href="<?= homeUrl() ?>#reviews">Reviews</a>
-        <a href="<?= pageUrl('faqs.php') ?>" class="<?= $activeNav === 'faqs' ? 'is-active' : '' ?>">FAQs</a>
-        <a href="<?= pageUrl('contact.php') ?>" class="<?= $activeNav === 'contact' ? 'is-active' : '' ?>">Locations</a>
-      </nav>
+
+    <a href="<?= homeUrl() ?>#services"
+       class="<?= $activeNav === 'home' ? 'is-active' : '' ?>">
+        Treatments
+    </a>
+    <a href="<?= pageUrl('contact.php') ?>"
+       class="<?= $activeNav === 'contact' ? 'is-active' : '' ?>">
+        Contact Us
+    </a>
+
+    <div class="nav-dropdown">
+
+        <button type="button" class="nav-dropdown-btn">
+            More
+            <span class="arrow">▼</span>
+        </button>
+        
+        <div class="nav-dropdown-menu">
+            <a href="<?= pageUrl('about-us.php') ?>"
+               class="<?= $activeNav === 'about' ? 'is-active' : '' ?>">
+                About Us
+            </a>
+
+            <a href="<?= homeUrl() ?>#reviews">
+                Reviews
+            </a>
+
+            <a href="<?= pageUrl('faqs.php') ?>"
+               class="<?= $activeNav === 'faqs' ? 'is-active' : '' ?>">
+                FAQs
+            </a>
+        </div>
+
+    </div>
+
+
+</nav>
 
       <div class="header-cta">
         <a href="tel:<?= htmlspecialchars(getConfig('contact.phonePrimary')) ?>" class="btn btn-ghost btn-sm">
-          <span class="icon-call">
+          <span class="icon-call call-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1.2 1.2 0 0 1 1.2-.3 11 11 0 0 0 3.4.5 1.2 1.2 0 0 1 1.2 1.2V20a1.2 1.2 0 0 1-1.2 1.2A17.2 17.2 0 0 1 2.8 4.2 1.2 1.2 0 0 1 4 3h3.4a1.2 1.2 0 0 1 1.2 1.2 11 11 0 0 0 .5 3.4 1.2 1.2 0 0 1-.3 1.2Z"/></svg>
           </span>
-          Call
         </a>
         <a href="<?= homeUrl() ?>#book" class="btn btn-primary btn-sm">Book Appointment</a>
       </div>

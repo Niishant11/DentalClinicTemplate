@@ -16,9 +16,9 @@ require_once __DIR__ . '/Assets/Website/Contents/header.php';
    ========================================================= */
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(8.5rem, 14vw, 11rem) 0 clamp(4rem, 8vw, 6rem); position: relative; overflow: hidden; }
+.hero { padding: clamp(6.5rem, 10vw, 7rem) 0 clamp(2rem, 6vw, 4rem); position: relative; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; position: relative; z-index: 1; }
-.hero-copy h1 { font-size: clamp(2.4rem, 4.4vw, 3.6rem); margin-top: 0.9rem; letter-spacing: -0.01em; }
+.hero-copy h1 { font-size: clamp(2.4rem, 2.4vw, 2rem); margin-top: 1rem; letter-spacing: -0.01em; }
 .hero-copy h1 em { font-style: normal; color: var(--aqua); position: relative; }
 .hero-copy p.lead { margin-top: 1.2rem; font-size: 1.08rem; color: var(--text-muted); max-width: 480px; }
 .hero-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.6rem; }
@@ -28,15 +28,10 @@ require_once __DIR__ . '/Assets/Website/Contents/header.php';
 .hero-visual { position: relative; height: 460px; display: flex; align-items: center; justify-content: center; }
 .tooth-halo {
   width: 320px; height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), rgba(159,230,215,0.35) 60%, transparent 75%);
-  border: 1px solid rgba(255,255,255,0.6);
-  backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center;
-  animation: haloSpin 26s linear infinite;
-  box-shadow: var(--shadow-lifted);
+  animation:  linear infinite;
 }
-@keyframes haloSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+*/
 .tooth-graphic { width: 168px; filter: drop-shadow(0 18px 30px rgba(14,59,54,0.22)); animation: toothFloat 5.5s ease-in-out infinite; }
 @keyframes toothFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @media (prefers-reduced-motion: reduce) { .tooth-halo, .tooth-graphic { animation: none; } }
@@ -250,16 +245,7 @@ require_once __DIR__ . '/Assets/Website/Contents/header.php';
 
     <div class="hero-visual reveal">
       <div class="tooth-halo">
-        <svg class="tooth-graphic" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="toothGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#FFFFFF"/>
-              <stop offset="55%" stop-color="#DDF3EE"/>
-              <stop offset="100%" stop-color="#9FE6D7"/>
-            </linearGradient>
-          </defs>
-          <path d="M50 5C32 5 18 16 18 36c0 13 5 20 8 31 3 10 4 22 9 33 3 7 7 12 11 12s7-6 9-15c1-6 2-14 5-14s4 8 5 14c2 9 5 15 9 15s8-5 11-12c5-11 6-23 9-33 3-11 8-18 8-31C92 16 78 5 50 5Z" fill="url(#toothGrad)" stroke="#0E3B36" stroke-width="1.4"/>
-        </svg>
+        <img src="<?= asset('Website/Images/Clean tooth.svg') ?>" alt="Tooth graphic" class="tooth-graphic">
       </div>
 
       <div class="float-card float-card--rating glass-strong tilt" data-tilt-strength="10">
@@ -315,7 +301,8 @@ require_once __DIR__ . '/Assets/Website/Contents/header.php';
 <section class="section">
   <div class="container doctor-grid">
     <div class="doctor-photo-frame reveal">
-      <div class="placeholder-caption">Replace with <?= htmlspecialchars(getConfig('doctor.name')) ?>'s portrait — see Images/README-IMAGES.md</div>
+      <img src="<?= getConfig('doctor.photoUrl') ?>" alt="Photo of <?= htmlspecialchars(getConfig('doctor.name')) ?>" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+      <div class="placeholder-caption"><?= htmlspecialchars(getConfig('doctor.name')) ?></div>
     </div>
     <div class="reveal">
       <span class="eyebrow">The Clinician Behind the Plan</span>

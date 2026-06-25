@@ -32,20 +32,209 @@ require __DIR__ . '/../Contents/header.php';
 .faq-category-title h2 { font-size: 1.3rem; }
 
 .faq-still { text-align: center; max-width: 560px; margin: 0 auto; }
+
+
+/* ===== FAQ CATEGORY HEADER ===== */
+
+.faq-category{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-category-title{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:30px;
+    padding:18px 22px;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    border:1px solid rgba(0,0,0,.05);
+}
+
+.faq-category-title .num{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#d4af37,#c49a2c);
+    color:#fff;
+    font-weight:700;
+    font-size:0.95rem;
+    border:none;
+    box-shadow:0 6px 15px rgba(212,175,55,.25);
+}
+
+.faq-category-title h2{
+    margin:0;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--ink);
+}
+
+/* ===== ALTERNATE SECTION SPACING ===== */
+
+.section[id]{
+    scroll-margin-top:120px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+    .faq-category-title{
+        padding:14px 16px;
+        gap:12px;
+    }
+
+    .faq-category-title .num{
+        width:36px;
+        height:36px;
+        font-size:.85rem;
+    }
+
+    .faq-category-title h2{
+        font-size:1.2rem;
+    }
+}
+
+/* ===== STILL HAVE QUESTIONS ===== */
+
+.faq-still{
+    max-width:800px;
+    text-align:center;
+}
+
+.faq-still h2{
+    font-size:clamp(2rem,4vw,3rem);
+}
+
+.faq-still .btn{
+    min-width:180px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+    .faqs-hero{
+        padding:100px 0 50px;
+    }
+
+    .faq-category-title h2{
+        font-size:1.5rem;
+    }
+
+    .accordion-trigger{
+        padding:18px;
+        font-size:.95rem;
+    }
+
+    .accordion-panel p{
+        padding:0 18px 18px;
+    }
+}
+
+/* ===== QUESTION & ANSWER CARDS ===== */
+
+.accordion-item{
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:18px;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.accordion-trigger{
+    all:unset;
+    display:block;
+    width:100%;
+    cursor:default;
+}
+
+.accordion-trigger span:first-child{
+    display:block;
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.5;
+    margin-bottom:12px;
+    position:relative;
+    padding-left:35px;
+}
+
+.accordion-trigger span:first-child::before{
+    content:"Q";
+    position:absolute;
+    left:0;
+    top:0;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#d4af37;
+    color:#fff;
+    font-size:0.8rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.accordion-panel{
+    display:block !important;
+    height:auto !important;
+    overflow:visible !important;
+    padding-left:35px;
+}
+
+.accordion-panel p{
+    margin:0;
+    color:#5f6b7a;
+    line-height:1.8;
+    font-size:0.96rem;
+    position:relative;
+}
+
+.accordion-panel p::before{
+    content:"A";
+    position:absolute;
+    left:-35px;
+    top:2px;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#1fb981;
+    color:#fff;
+    font-size:0.8rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.plus{
+    display:none;
+}
 </style>
 
 <!-- ================= HERO ================= -->
 <section class="faqs-hero">
   <div class="container reveal">
-    <span class="eyebrow" style="justify-content:center;">Frequently Asked Questions</span>
-    <h1>Questions we hear <span style="color:var(--gold);">often</span>, answered plainly.</h1>
-    <p>Can&rsquo;t find what you&rsquo;re looking for? Our front desk is always happy to talk it through before you book.</p>
-    <div class="faq-jump">
-      <a href="#general">General</a>
-      <a href="#appointments">Appointments</a>
-      <a href="#treatments">Treatments</a>
-      <a href="#payments">Payments &amp; Insurance</a>
-      <a href="#aftercare">Aftercare</a>
+    <div class="glass-strong" style="padding:40px;border-radius:28px;">
+      <span class="eyebrow" style="justify-content:center;">Frequently Asked Questions</span>
+      <h1>Questions we hear <span style="color:var(--gold);">often</span>, answered plainly.</h1>
+      <p>Can&rsquo;t find what you&rsquo;re looking for? Our front desk is always happy to talk it through before you book.</p>
+      <div class="faq-jump">
+       <a href="#general">General</a>
+        <a href="#appointments">Appointments</a>
+        <a href="#treatments">Treatments</a>
+        <a href="#payments">Payments &amp; Insurance</a>
+        <a href="#aftercare">Aftercare</a>
+      </div>
     </div>
   </div>
 </section>

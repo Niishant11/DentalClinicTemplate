@@ -2,18 +2,18 @@
   "clinic": {
     "name": "Nishant Dental Studio",
     "shortName": "Nishant Dental",
-    "tagline": "Precision Dentistry, Designed Around You",
-    "establishedYear": 2009,
+    "tagline": "Precision Dentistry",
+    "establishedYear": 2019,
     "logoText": "Nishant Dental",
-    "logoIcon": "tooth",
-    "logoImage": "",
-    "faviconImage": ""
+    "logoIcon": "Clean tooth.svg",
+    "logoImage": "Website/Images/logo.png",
+    "faviconImage": "Clean tooth.svg"
   },
   "doctor": {
     "name": "Dr. Aanya Kapoor",
     "credentials": "BDS, MDS — Prosthodontics & Implantology",
     "experienceYears": 18,
-    "photo": ""
+    "photoUrl": "https://media.istockphoto.com/id/1484746125/photo/dentist-man-smiling-while-standing-in-dental-clinic-portrait-of-confident-a-young-dentist.jpg?s=1024x1024&w=is&k=20&c=p7yb7yWvYU1mQ_y-oqq-eWh0WAlCyyk2luwAqz7rAyM="
   },
   "contact": {
     "phonePrimary": "+91 98100 00000",
@@ -40,8 +40,8 @@
     }
   ],
   "hours": {
-    "weekdays": "9:00 AM – 8:00 PM",
-    "saturday": "9:00 AM – 6:00 PM",
+    "weekdays": "9:00 AM - 8:00 PM",
+    "saturday": "9:00 AM - 6:00 PM",
     "sunday": "By appointment only"
   },
   "social": {

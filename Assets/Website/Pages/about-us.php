@@ -29,7 +29,7 @@ require __DIR__ . '/../Contents/header.php';
 .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
 @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } }
 .about-photo-frame {
-  aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden;
+  aspect-ratio: 3/3; border-radius: var(--radius-lg); overflow: hidden;
   background: linear-gradient(150deg, var(--mist-deep), var(--mist));
   display: flex; align-items: center; justify-content: center; position: relative;
 }
@@ -77,6 +77,54 @@ require __DIR__ . '/../Contents/header.php';
 
 .cta-banner { text-align: center; }
 .cta-banner h2 { color: var(--white); }
+
+.facility-photo{
+    position:relative;
+    overflow:hidden;
+    border-radius:16px;
+    height:280px;
+}
+
+.facility-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.facility-photo span{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:12px;
+    color:#fff;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        transparent
+    );
+}
+
+.team-photo-frame-static{
+    width:100%;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    border-radius:20px;
+    margin-bottom:1rem;
+}
+
+.doctor-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .3s ease;
+}
+
+.team-photo-frame-static:hover .doctor-photo{
+    transform:scale(1.05);
+}
 </style>
 
 <!-- ================= ABOUT HERO ================= -->
@@ -90,8 +138,14 @@ require __DIR__ . '/../Contents/header.php';
 <section class="section">
   <div class="container story-grid">
     <div class="about-photo-frame reveal">
-      <div class="placeholder-caption">Add a clinic interior photo here — see Images/README-IMAGES.md</div>
+    <img src="<?= asset('Website/Images/dental-clinic.jpg') ?>"
+         alt="Dental Clinic Interior"
+         class="about-photo">
+
+    <div class="placeholder-caption">
+        Modern Dental Clinic
     </div>
+</div>
     <div class="reveal">
       <span class="eyebrow">Our Story</span>
       <h2 style="margin-top:0.6rem; font-size:clamp(1.7rem,3vw,2.2rem);">From one chair to a coordinated specialist network</h2>
@@ -173,12 +227,37 @@ require __DIR__ . '/../Contents/header.php';
       <span class="eyebrow">Inside the Clinic</span>
       <h2>What the space actually looks like</h2>
     </div>
-    <div class="grid facility-grid reveal-stagger">
-      <?php $facilityLabels = ['Reception & Waiting Area', 'Treatment Suite', 'Digital Imaging Room', 'Paediatric Suite']; ?>
-      <?php foreach ($facilityLabels as $label): ?>
-        <div class="facility-photo reveal"><span><?= htmlspecialchars($label) ?> — add photo</span></div>
-      <?php endforeach; ?>
-    </div>
+    <?php
+$facilities = [
+    [
+        'title' => 'Reception & Waiting Area',
+        'image' => 'Website/Images/dental01.jpg'
+    ],
+    [
+        'title' => 'Treatment Suite',
+        'image' => 'Website/Images/dental1.jpg'
+    ],
+    [
+        'title' => 'Digital Imaging Room',
+        'image' => 'Website/Images/dental3.jpg'
+    ],
+    [
+        'title' => 'Paediatric Suite',
+        'image' => 'Website/Images/dental4.jpg'
+    ]
+];
+?>
+
+<div class="grid facility-grid reveal-stagger">
+    <?php foreach ($facilities as $facility): ?>
+        <div class="facility-photo reveal">
+            <img src="<?= asset($facility['image']) ?>"
+                 alt="<?= htmlspecialchars($facility['title']) ?>">
+
+            <span><?= htmlspecialchars($facility['title']) ?></span>
+        </div>
+    <?php endforeach; ?>
+</div>
   </div>
 </section>
 
@@ -189,25 +268,69 @@ require __DIR__ . '/../Contents/header.php';
       <span class="eyebrow" style="justify-content:center;">Meet the Team</span>
       <h2>Five specialists, one shared protocol</h2>
     </div>
+
     <div class="grid team-grid-full reveal-stagger">
+
       <?php
       $fullTeam = [
-        ['name' => 'Dr. Aanya Kapoor', 'role' => 'Prosthodontics & Implantology', 'note' => getConfig('doctor.experienceYears') . '+ years experience'],
-        ['name' => 'Dr. Rohan Mehta', 'role' => 'Endodontics (Root Canal)', 'note' => 'Microscope-assisted specialist'],
-        ['name' => 'Dr. Simran Bedi', 'role' => 'Orthodontics & Aligners', 'note' => 'Clear aligner certified'],
-        ['name' => 'Dr. Karan Suri', 'role' => 'Paediatric Dentistry', 'note' => 'Child behaviour-management trained'],
-        ['name' => 'Dr. Naina Oberoi', 'role' => 'Cosmetic & Restorative Dentistry', 'note' => 'Veneers & smile design lead'],
+          [
+              'name' => 'Dr. Aaryan Kapoor',
+              'role' => 'Prosthodontics & Implantology',
+              'note' => getConfig('doctor.experienceYears') . '+ years experience',
+              'image' => 'Website/Images/dr1.jpg'
+          ],
+          [
+              'name' => 'Dr. Rohan Mehta',
+              'role' => 'Endodontics (Root Canal)',
+              'note' => 'Microscope-assisted specialist',
+              'image' => 'Website/Images/dr2.jpg'
+          ],
+          [
+              'name' => 'Dr. Simran Bedi',
+              'role' => 'Orthodontics & Aligners',
+              'note' => 'Clear aligner certified',
+              'image' => 'Website/Images/dr4.jpg'
+          ],
+          [
+              'name' => 'Dr. Karan Suri',
+              'role' => 'Paediatric Dentistry',
+              'note' => 'Child behaviour-management trained',
+              'image' => 'Website/Images/dr3.jpg'
+          ],
+          [
+              'name' => 'Dr. Naina Oberoi',
+              'role' => 'Cosmetic & Restorative Dentistry',
+              'note' => 'Veneers & smile design lead',
+              'image' => 'Website/Images/dr5.png'
+          ]
       ];
-      foreach ($fullTeam as $member): ?>
+
+      foreach ($fullTeam as $member):
+      ?>
+
         <div class="reveal" style="text-align:center;">
           <div class="team-photo-frame-static">
-            <div class="placeholder-caption">Add photo</div>
+            <img
+              src="<?= asset($member['image']) ?>"
+              alt="<?= htmlspecialchars($member['name']) ?>"
+              class="doctor-photo">
           </div>
-          <h3 style="font-size:0.98rem;"><?= htmlspecialchars($member['name']) ?></h3>
-          <p class="text-muted" style="font-size:0.82rem; margin-top:0.3rem;"><?= htmlspecialchars($member['role']) ?></p>
-          <p class="text-muted" style="font-size:0.76rem; margin-top:0.2rem;"><?= htmlspecialchars($member['note']) ?></p>
+
+          <h3 style="font-size:0.98rem;">
+            <?= htmlspecialchars($member['name']) ?>
+          </h3>
+
+          <p class="text-muted" style="font-size:0.82rem; margin-top:0.3rem;">
+            <?= htmlspecialchars($member['role']) ?>
+          </p>
+
+          <p class="text-muted" style="font-size:0.76rem; margin-top:0.2rem;">
+            <?= htmlspecialchars($member['note']) ?>
+          </p>
         </div>
+
       <?php endforeach; ?>
+
     </div>
   </div>
 </section>
